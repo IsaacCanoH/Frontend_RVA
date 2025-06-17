@@ -42,7 +42,7 @@
 }
 
 .header-mobile {
-  padding: 1rem 0.5rem !important;
+  padding: 2rem 1.5rem !important;
   min-height: auto !important;
   height: auto !important;
 }
@@ -96,7 +96,7 @@
 @media (max-width: 991.98px) {
   .header-mobile {
     flex: 0 0 auto !important;
-    max-height: 80px !important;
+    max-height: 120px !important;
   }
 
   .header-mobile h2 {
