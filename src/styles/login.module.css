@@ -75,12 +75,6 @@
     transform: none;
   }
 
-  .py-4 {
-    padding-top: - 2rem !important;
-    /* Reducir de 1rem */
-    padding-bottom: -2rem !important;
-    /* Reducir de 1rem */
-  }
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
