@@ -24,17 +24,6 @@
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
-/* Estilos para campos con error */
-.form-control.is-invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-}
-
-/* Estilos para input-group-text con error */
-.input-group-text.border-danger {
-  border-color: #dc3545 !important;
-}
-
 .btn-primary {
   background-color: #0d6efd;
   border-color: #0d6efd;
@@ -85,6 +74,7 @@
   .btn-primary:hover {
     transform: none;
   }
+
 }
 
 @media (min-width: 577px) and (max-width: 991px) {

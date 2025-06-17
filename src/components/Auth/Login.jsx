@@ -14,12 +14,6 @@ const LoginPage = () => {
     remember: false,
   })
 
-  // Estado para manejar los errores de validación
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  })
-
   const { showLoader, hideLoader } = useLoader()
 
   const handleChange = (e) => {
@@ -28,58 +22,10 @@ const LoginPage = () => {
       ...formData,
       [name]: type === "checkbox" ? checked : value,
     })
-
-    // Limpiar el error del campo cuando el usuario empiece a escribir
-    if (errors[name]) {
-      setErrors({
-        ...errors,
-        [name]: "",
-      })
-    }
-  }
-
-  // Función para validar el formato del email
-  const validateEmail = (email) => {
-    // Esta expresión regular verifica que el formato sea usuario@inaeba.edu.mx
-    const emailRegex = /^[^\s@]+@inaeba\.edu\.mx$/
-    return emailRegex.test(email)
-  }
-
-  // Función para validar la contraseña
-  const validatePassword = (password) => {
-    return password.length >= 6
-  }
-
-  // Función para validar todos los campos antes del envío
-  const validateForm = () => {
-    const newErrors = {}
-
-    // Validación del email
-    if (!formData.email.trim()) {
-      newErrors.email = "El correo electrónico es obligatorio"
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Por favor ingresa un correo electrónico válido"
-    }
-
-    // Validación de la contraseña
-    if (!formData.password.trim()) {
-      newErrors.password = "La contraseña es obligatoria"
-    } else if (!validatePassword(formData.password)) {
-      newErrors.password = "La contraseña debe tener al menos 6 caracteres"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // Validar el formulario antes de enviar
-    if (!validateForm()) {
-      return
-    }
-
     const { email, password } = formData
 
     try {
@@ -111,7 +57,6 @@ const LoginPage = () => {
               showPassword={showPassword}
               setShowPassword={setShowPassword}
               styles={styles}
-              errors={errors} // Pasar los errores al componente LoginForm
             />
           </div>
         </div>
