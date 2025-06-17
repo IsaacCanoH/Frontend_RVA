@@ -45,10 +45,10 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="container-fluid p-0 min-vh-100">
-      <div className="row g-0 min-vh-100">
+    <div className="container-fluid p-0 min-vh-lg-100">
+      <div className="row g-0 min-vh-lg-100">
         <LoginHeader styles={styles} />
-        <div className="col-lg-7 col-12 d-flex align-items-center justify-content-center py-lg-4 py-2">
+        <div className="col-lg-7 col-12 d-flex align-items-lg-center justify-content-center py-lg-4">
           <div className="w-100 px-3 px-sm-4 px-lg-5">
             <LoginForm
               formData={formData}

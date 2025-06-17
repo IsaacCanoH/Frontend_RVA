@@ -42,21 +42,42 @@
 }
 
 .header-mobile {
-  padding: 1rem 1.5rem !important;
+  padding: 0.5rem 1rem !important;
   min-height: auto !important;
   height: auto !important;
 }
 
 .header-mobile h2 {
-  font-size: 1.3rem !important;
+  font-size: 1.2rem !important;
   margin-bottom: 0.25rem !important;
   line-height: 1.2;
 }
 
 .header-mobile p {
-  font-size: 0.8rem !important;
+  font-size: 0.75rem !important;
   margin: 0 !important;
   line-height: 1.3;
+}
+
+/* Clases personalizadas para altura mínima solo en desktop */
+@media (min-width: 992px) {
+  .min-vh-lg-100 {
+    min-height: 100vh !important;
+  }
+}
+
+/* En móvil, sin altura mínima forzada */
+@media (max-width: 991.98px) {
+  .min-vh-lg-100 {
+    min-height: auto !important;
+  }
+
+  /* El contenedor del formulario no se centra verticalmente en móvil */
+  .col-12.d-flex {
+    align-items: flex-start !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }
 
 /* Mejoras para móvil */
@@ -80,7 +101,7 @@
   }
 
   .header-mobile {
-    padding: 0.75rem 1rem !important;
+    padding: 0.5rem 0.75rem !important;
   }
 
   .header-mobile h2 {
@@ -89,7 +110,13 @@
   }
 
   .header-mobile p {
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Eliminar cualquier padding vertical extra */
+  .col-12.d-flex {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 }
 
@@ -97,29 +124,28 @@
   .card {
     margin: 1rem auto !important;
   }
+
+  .col-12.d-flex {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }
 
 @media (max-height: 600px) and (max-width: 991px) {
-  .min-vh-100 {
-    min-height: auto;
+  .header-mobile {
+    padding: 0.25rem 0.75rem !important;
   }
 
-  .header-mobile {
-    padding: 0.5rem 1rem !important;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .header-mobile {
-    flex: 0 0 auto !important;
-    max-height: 80px !important;
+  .col-12.d-flex {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
   }
 }
 
 /* Pantallas muy pequeñas */
 @media (max-width: 360px) {
   .header-mobile {
-    padding: 0.5rem 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
   }
 
   .header-mobile h2 {
@@ -127,6 +153,6 @@
   }
 
   .header-mobile p {
-    font-size: 0.7rem !important;
+    font-size: 0.65rem !important;
   }
 }
