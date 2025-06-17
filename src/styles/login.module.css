@@ -78,7 +78,7 @@
 
 @media (min-width: 577px) and (max-width: 991px) {
   .card {
-    margin: 2rem auto !important;
+    margin: 0.5rem auto !important;
   }
 }
 
@@ -88,8 +88,8 @@
   }
 
   .py-4 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 }
 
