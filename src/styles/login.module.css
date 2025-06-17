@@ -1,3 +1,16 @@
+/* En móviles, evita altura completa para permitir más espacio arriba */
+.login-row {
+  min-height: 100vh;
+}
+
+@media (max-width: 576px) {
+  .login-row {
+    min-height: auto !important;
+    padding-top: 2rem; /* mueve el contenido hacia arriba */
+    padding-bottom: 2rem;
+  }
+}
+
 .diagonal-bg {
   position: absolute;
   top: 0;
@@ -126,3 +139,4 @@
     margin-top: 0 !important;
   }
 }
+
