@@ -2,14 +2,14 @@ import { Eye, EyeOff, User, Lock } from "lucide-react"
 
 const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShowPassword, styles }) => (
   <div className={`${styles.card} card border-0 shadow-lg mx-auto`} style={{ maxWidth: "500px" }}>
-    <div className="card-body p-3 p-sm-4 p-lg-5">
-      <div className="text-center mb-3 mb-sm-4">
+    <div className="card-body p-4 p-sm-5">
+      <div className="text-center mb-4">
         <h2 className="fw-bold text-primary mb-2">Iniciar Sesión</h2>
         <p className="text-muted small">Ingresa tus credenciales para acceder al sistema</p>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mb-3 mb-sm-4">
           <label htmlFor="email" className="form-label fw-semibold small">
             Correo Electrónico
           </label>
@@ -30,7 +30,7 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 mb-sm-4">
           <div className="d-flex justify-content-between align-items-center mb-2">
             <label htmlFor="password" className="form-label fw-semibold small mb-0">
               Contraseña
@@ -63,7 +63,7 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 mb-sm-4">
           <div className="form-check">
             <input
               type="checkbox"
@@ -81,7 +81,7 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
 
         <button
           type="submit"
-          className={`${styles["btn-primary"]} btn btn-primary w-100 py-2 py-sm-3 mb-3 fw-semibold`}
+          className={`${styles["btn-primary"]} btn btn-primary w-100 py-2 py-sm-3 mb-3 mb-sm-4 fw-semibold`}
         >
           Ingresar al Sistema
         </button>
