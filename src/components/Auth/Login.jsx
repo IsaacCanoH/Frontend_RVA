@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm"
 import LoginHeader from "./LoginHeader"
 import { login } from "../../services/authService"
 import "bootstrap/dist/css/bootstrap.min.css"
-import styles from "../../styles/Login.module.css"
+import styles from "../../styles/login.module.css"
 import { useLoader } from "../../context/LoaderContext"
 
 const LoginPage = () => {
