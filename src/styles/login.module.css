@@ -45,8 +45,6 @@
   padding: 2rem 1.5rem !important;
   min-height: auto !important;
   height: auto !important;
-  padding-top: 0.25rem;     /* Reducir de 0.5rem */
-  padding-bottom: 0.25rem;  /* Reducir de 0.5rem */
 }
 
 .header-mobile h2 {
@@ -78,9 +76,11 @@
   }
 
   .py-4 {
-  padding-top: 0.5rem !important;  /* Reducir de 1rem */
-  padding-bottom: 0.5rem !important; /* Reducir de 1rem */
-}
+    padding-top: - 2rem !important;
+    /* Reducir de 1rem */
+    padding-bottom: -2rem !important;
+    /* Reducir de 1rem */
+  }
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
