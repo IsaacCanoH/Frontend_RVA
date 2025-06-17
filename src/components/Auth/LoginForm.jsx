@@ -1,6 +1,6 @@
-import { Eye, EyeOff, User, Lock } from "lucide-react"
+import { Eye, EyeOff, User, Lock, AlertTriangle } from "lucide-react"
 
-const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShowPassword, styles }) => (
+const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShowPassword, styles, errors }) => (
   <div className={`${styles.card} card border-0 shadow-lg mx-auto`} style={{ maxWidth: "500px" }}>
     <div className="card-body p-4 p-sm-5">
       <div className="text-center mb-4">
@@ -14,12 +14,12 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
             Correo Electrónico
           </label>
           <div className="input-group">
-            <span className="input-group-text bg-light border-end-0">
-              <User size={16} className="text-primary" />
+            <span className={`input-group-text bg-light border-end-0 ${errors.email ? "border-danger" : ""}`}>
+              <User size={16} className={errors.email ? "text-danger" : "text-primary"} />
             </span>
             <input
               type="email"
-              className="form-control border-start-0 py-2"
+              className={`form-control border-start-0 py-2 ${errors.email ? "border-danger is-invalid" : ""}`} // Agregar clase de error si existe
               id="email"
               name="email"
               placeholder="nombre@inaeba.edu.mx"
@@ -28,6 +28,13 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
               required
             />
           </div>
+          {/* Mostrar mensaje de error del email si existe */}
+          {errors.email && (
+            <div className="d-flex align-items-center mt-2 text-danger">
+              <AlertTriangle size={16} className="me-2" />
+              <small className="fw-medium">{errors.email}</small>
+            </div>
+          )}
         </div>
 
         <div className="mb-3 mb-sm-4">
@@ -40,12 +47,12 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
             </a>
           </div>
           <div className="input-group">
-            <span className="input-group-text bg-light border-end-0">
-              <Lock size={16} className="text-primary" />
+            <span className={`input-group-text bg-light border-end-0 ${errors.password ? "border-danger" : ""}`}>
+              <Lock size={16} className={errors.password ? "text-danger" : "text-primary"} />
             </span>
             <input
               type={showPassword ? "text" : "password"}
-              className="form-control border-start-0 border-end-0 py-2"
+              className={`form-control border-start-0 border-end-0 py-2 ${errors.password ? "border-danger is-invalid" : ""}`} // Agregar clase de error si existe
               id="password"
               name="password"
               placeholder="Ingresa tu contraseña"
@@ -55,12 +62,19 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
             />
             <button
               type="button"
-              className="input-group-text bg-light border-start-0"
+              className={`input-group-text bg-light border-start-0 ${errors.password ? "border-danger" : ""}`}
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff size={16} className="text-muted" /> : <Eye size={16} className="text-muted" />}
             </button>
           </div>
+          {/* Mostrar mensaje de error de la contraseña si existe */}
+          {errors.password && (
+            <div className="d-flex align-items-center mt-2 text-danger">
+              <AlertTriangle size={16} className="me-2" />
+              <small className="fw-medium">{errors.password}</small>
+            </div>
+          )}
         </div>
 
         <div className="mb-3 mb-sm-4">
