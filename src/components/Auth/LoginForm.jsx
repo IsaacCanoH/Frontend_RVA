@@ -1,9 +1,7 @@
-"use client"
-
 import { Eye, EyeOff, User, Lock } from "lucide-react"
 
 const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShowPassword, styles }) => (
-  <div className={`${styles.card} ${styles.cardMobile} card border-0 shadow-lg mx-auto`} style={{ maxWidth: "500px" }}>
+  <div className={`${styles.card} card border-0 shadow-lg mx-auto`} style={{ maxWidth: "500px" }}>
     <div className="card-body p-4 p-sm-5">
       <div className="text-center mb-4">
         <h2 className="fw-bold text-primary mb-2">Iniciar Sesión</h2>
