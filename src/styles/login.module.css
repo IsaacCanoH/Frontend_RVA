@@ -55,14 +55,17 @@
 }
 
 .header-mobile {
-  padding: 2rem 1.5rem !important;
-  min-height: auto !important;
+  padding: 1rem 1.5rem !important;
   height: auto !important;
+  margin: 0 !important;
+  border: none !important;
+  background-color: #0d6efd;
+  position: relative;
 }
 
 .header-mobile h2 {
   font-size: 1.5rem !important;
-  margin-bottom: 0.5rem !important;
+  margin: 0 !important;
   line-height: 1.2;
 }
 
