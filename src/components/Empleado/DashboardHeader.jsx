@@ -15,7 +15,7 @@ const DashboardHeader = ({
   styles,
 }) => {
   return (
-    <nav className="navbar navbar-expand-lg bg-primary shadow-sm border-bottom">
+    <nav className="navbar navbar-expand-lg bg-primary shadow-sm border-bottom py-4">
       <div className="container-fluid px-4">
         <div className="d-flex align-items-center">
           <div className="me-3 d-flex align-items-center justify-content-center">
