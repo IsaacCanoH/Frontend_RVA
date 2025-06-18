@@ -176,14 +176,14 @@
   }
 
   .notificationDropdown {
-    right: -10px !important;
+    right: 0px !important;
     width: 380px !important;
   }
 }
 
 @media (max-width: 400px) {
   .notificationDropdown {
-    right: -20px !important;
+    right: 10px !important;
     width: 350px !important;
   }
 }
