@@ -7,15 +7,17 @@ export const login = async (usuario, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ usuario, contrasena: password }), 
+      body: JSON.stringify({ usuario, contrasena: password }),
     });
 
     const data = await response.json();
 
     if (response.ok && data.token) {
-      localStorage.setItem("token", data.token);
-      return { success: true, usuario: data.payload }; 
-    } else {
+      localStorage.setItem("token", data.token)
+      localStorage.setItem("usuario", JSON.stringify(data.payload))
+      return { success: true, usuario: data.payload }
+    }
+    else {
       return { success: false, error: data.error || "Algo salió mal" };
     }
   } catch (error) {

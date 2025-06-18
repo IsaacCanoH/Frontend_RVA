@@ -5,6 +5,7 @@ import { login } from "../../services/authService"
 import "bootstrap/dist/css/bootstrap.min.css"
 import styles from "../../styles/login.module.css"
 import { useLoader } from "../../context/LoaderContext"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -24,6 +25,8 @@ const LoginPage = () => {
     })
   }
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const { usuario, password } = formData
@@ -33,7 +36,7 @@ const LoginPage = () => {
       const result = await login(usuario, password)
 
       if (result.success) {
-        alert(`¡Bienvenido, ${result.usuario.nombre}!`)
+        navigate("/dashboard")
       } else {
         alert(`Error: ${result.error}`)
       }

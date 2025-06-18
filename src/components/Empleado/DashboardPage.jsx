@@ -5,6 +5,7 @@ import QRModal from "./QRModal"
 import IncidenciaModal from "./IncidenciaModal"
 import styles from "../../styles/dashboard.module.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { useNavigate } from "react-router-dom"
 
 import {
   Camera,
@@ -33,6 +34,13 @@ const DashboardPage = () => {
   const [cameraActive, setCameraActive] = useState(false)
   const videoRef = useRef(null)
   const notificationRef = useRef(null)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("usuario")
+    navigate("/login")
+  }
 
   const [incidenciaForm, setIncidenciaForm] = useState({
     tipo: "",
@@ -84,11 +92,9 @@ const DashboardPage = () => {
     },
   ])
 
-  const usuario = {
-    nombre: "María González",
-    cargo: "Coordinadora Académica",
-    avatar: "/placeholder.svg?height=40&width=40",
-  }
+  const storedUser = localStorage.getItem("usuario")
+  const usuario = storedUser ? JSON.parse(storedUser) : { nombre: "Invitado", cargo: "", avatar: "" }
+
 
   const historialAsistencias = [
     { fecha: "2024-01-10", entrada: "08:00", salida: "17:00", estado: "completo", horas: "9h 00m" },
@@ -205,6 +211,7 @@ const DashboardPage = () => {
         getNotificationIcon={getNotificationIcon}
         getNotificationBadgeColor={getNotificationBadgeColor}
         styles={styles}
+        handleLogout={handleLogout}
       />
 
       <div className="container-fluid px-4 py-4">

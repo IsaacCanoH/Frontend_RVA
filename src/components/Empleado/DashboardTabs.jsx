@@ -85,7 +85,7 @@ const DashboardTabs = ({
             <div className="card-body p-0">
               <div className="list-group list-group-flush">
                 {historialAsistencias.map((registro, index) => (
-                  <div key={index} className="list-group-item border-0 py-4 px-4">
+                  <div key={index} className="list-group-item border-bottom  border-0 py-4 px-4">
                     <div className="d-flex justify-content-between flex-wrap gap-3 align-items-center">
                       <div>
                         <div className="fw-semibold text-dark">{registro.fecha}</div>
@@ -148,7 +148,7 @@ const DashboardTabs = ({
       <div className="row g-4 mb-4">
         <div className="col-12 d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
           <div>
-            <h4 className="fw-bold text-dark mb-1">¡Bienvenido, {usuario.nombre}!</h4>
+            <h4 className="fw-bold text-dark mb-1">¡Bienvenido, {usuario.nombre} {usuario.apellido}!</h4>
             <p className="text-muted mb-0">Gestiona tu asistencia y mantén tu registro actualizado</p>
           </div>
 

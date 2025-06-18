@@ -1,11 +1,10 @@
 import React from "react";
-import LoginPage from "./components/Auth/Login"; 
-import DashboardPage from "./components/Empleado/DashboardPage";
+import AppRoutes from "./routes/AppRoutes" 
 
 const App = () => {
   return (
     <div>
-      <DashboardPage />
+      <AppRoutes />
     </div>
   );
 };
