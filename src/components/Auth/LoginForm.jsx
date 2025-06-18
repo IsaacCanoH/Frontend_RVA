@@ -10,20 +10,20 @@ const LoginForm = ({ formData, handleChange, handleSubmit, showPassword, setShow
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3 mb-sm-4">
-          <label htmlFor="email" className="form-label fw-semibold small">
-            Correo Electrónico
+          <label htmlFor="usuario" className="form-label fw-semibold small">
+            Usuario
           </label>
           <div className="input-group">
             <span className="input-group-text bg-light border-end-0">
               <User size={16} className="text-primary" />
             </span>
             <input
-              type="email"
+              type="text"
               className="form-control border-start-0 py-2"
-              id="email"
-              name="email"
-              placeholder="nombre@inaeba.edu.mx"
-              value={formData.email}
+              id="usuario"
+              name="usuario"
+              placeholder="Ingresa tu usuario"
+              value={formData.usuario}
               onChange={handleChange}
               required
             />

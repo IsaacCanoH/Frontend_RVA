@@ -9,7 +9,7 @@ import { useLoader } from "../../context/LoaderContext"
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
-    email: "",
+    usuario: "",
     password: "",
     remember: false,
   })
@@ -26,11 +26,11 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { email, password } = formData
+    const { usuario, password } = formData
 
     try {
       showLoader()
-      const result = await login(email, password)
+      const result = await login(usuario, password)
 
       if (result.success) {
         alert(`¡Bienvenido, ${result.usuario.nombre}!`)

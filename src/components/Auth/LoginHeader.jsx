@@ -7,7 +7,7 @@ const LoginHeader = ({ styles }) => (
         className={`position-absolute top-50 start-50 translate-middle text-center text-white ${styles["z-index-1"]} px-4`}
       >
         <h1 className="display-3 fw-bold mb-4">INAEBA</h1>
-        <p className="lead mb-4">Instituto Nacional para la Educación de los Adultos en el Estado de Guanajuato</p>
+        <p className="lead mb-4">Instituto de Alfabetización y Educación Básica para Adultos en el Estado de Guanajuato</p>
         <div className="border-top border-white opacity-50 w-50 mx-auto my-4"></div>
         <p className="fs-5">Sistema de Asistencia Educativa</p>
       </div>
