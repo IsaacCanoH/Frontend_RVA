@@ -6,11 +6,7 @@ import QRModal from "./QRModal"
 import IncidenciaModal from "./IncidenciaModal"
 import styles from "../../styles/dashboard.module.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import {
-  Camera, FileText, Clock, CheckCircle, XCircle, Upload,
-  Calendar, AlertCircle, BarChart3, Settings, Bell,
-  LogOut, X, Check, Info, AlertTriangle,
-} from "lucide-react"
+import { Camera, FileText, Clock, CheckCircle, XCircle, Upload, Calendar, AlertCircle, BarChart3, Settings, Bell, LogOut, X, Check, Info, AlertTriangle } from "lucide-react"
 
 const DashboardPage = () => {
   const navigate = useNavigate()
