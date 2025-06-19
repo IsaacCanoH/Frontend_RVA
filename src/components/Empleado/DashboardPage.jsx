@@ -49,67 +49,15 @@ const DashboardPage = () => {
     evidencias: [],
   })
 
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      tipo: "success",
-      titulo: "Asistencia Registrada",
-      mensaje: "Tu asistencia del día de hoy ha sido registrada correctamente",
-      fecha: "2024-01-10 08:00",
-      leida: false,
-    },
-    {
-      id: 2,
-      tipo: "warning",
-      titulo: "Incidencia Pendiente",
-      mensaje: "Tu solicitud de justificación de falta está en revisión",
-      fecha: "2024-01-09 14:30",
-      leida: false,
-    },
-    {
-      id: 3,
-      tipo: "info",
-      titulo: "Recordatorio",
-      mensaje: "No olvides registrar tu salida al finalizar tu jornada laboral",
-      fecha: "2024-01-09 16:45",
-      leida: true,
-    },
-    {
-      id: 4,
-      tipo: "error",
-      titulo: "Incidencia Rechazada",
-      mensaje: "Tu solicitud de justificación requiere documentación adicional",
-      fecha: "2024-01-08 10:15",
-      leida: true,
-    },
-    {
-      id: 5,
-      tipo: "success",
-      titulo: "Incidencia Aprobada",
-      mensaje: "Tu justificación de retardo ha sido aprobada por tu supervisor",
-      fecha: "2024-01-07 09:20",
-      leida: true,
-    },
-  ])
+  const [notifications, setNotifications] = useState([])
 
   const storedUser = localStorage.getItem("usuario")
   const usuario = storedUser ? JSON.parse(storedUser) : { nombre: "Invitado", cargo: "", avatar: "" }
 
 
-  const historialAsistencias = [
-    { fecha: "2024-01-10", entrada: "08:00", salida: "17:00", estado: "completo", horas: "9h 00m" },
-    { fecha: "2024-01-09", entrada: "08:15", salida: "17:00", estado: "retardo", horas: "8h 45m" },
-    { fecha: "2024-01-08", entrada: "08:00", salida: "17:00", estado: "completo", horas: "9h 00m" },
-    { fecha: "2024-01-07", entrada: "-", salida: "-", estado: "falta", horas: "0h 00m" },
-    { fecha: "2024-01-06", entrada: "08:00", salida: "17:00", estado: "completo", horas: "9h 00m" },
-  ]
+  const historialAsistencias = []
 
-  const estadisticas = {
-    asistencias: 22,
-    retardos: 3,
-    faltas: 1,
-    porcentaje: 92,
-  }
+  const estadisticas = {}
 
   useEffect(() => {
     const handleClickOutside = (event) => {

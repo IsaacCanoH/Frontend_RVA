@@ -39,7 +39,7 @@ const DashboardTabs = ({
               <div className="card border-0 bg-success bg-opacity-10 h-100">
                 <div className="card-body text-center py-4">
                   <CheckCircle size={32} className="text-success mb-3" />
-                  <h4 className="fw-bold text-success mb-1">{estadisticas.asistencias}</h4>
+                  <h4 className="fw-bold text-success mb-1">{estadisticas.asistencias ?? 0}</h4>
                   <small className="text-success opacity-75 fw-medium">Asistencias</small>
                 </div>
               </div>
@@ -48,7 +48,7 @@ const DashboardTabs = ({
               <div className="card border-0 bg-warning bg-opacity-10 h-100">
                 <div className="card-body text-center py-4">
                   <Clock size={32} className="text-warning mb-3" />
-                  <h4 className="fw-bold text-warning mb-1">{estadisticas.retardos}</h4>
+                  <h4 className="fw-bold text-warning mb-1">{estadisticas.retardos ?? 0}</h4>
                   <small className="text-warning opacity-75 fw-medium">Retardos</small>
                 </div>
               </div>
@@ -57,7 +57,7 @@ const DashboardTabs = ({
               <div className="card border-0 bg-danger bg-opacity-10 h-100">
                 <div className="card-body text-center py-4">
                   <XCircle size={32} className="text-danger mb-3" />
-                  <h4 className="fw-bold text-danger mb-1">{estadisticas.faltas}</h4>
+                  <h4 className="fw-bold text-danger mb-1">{estadisticas.faltas ?? 0}</h4>
                   <small className="text-danger opacity-75 fw-medium">Faltas</small>
                 </div>
               </div>
@@ -66,7 +66,7 @@ const DashboardTabs = ({
               <div className="card border-0 bg-primary bg-opacity-10 h-100">
                 <div className="card-body text-center py-4">
                   <BarChart3 size={32} className="text-primary mb-3" />
-                  <h4 className="fw-bold text-primary mb-1">{estadisticas.porcentaje}%</h4>
+                  <h4 className="fw-bold text-primary mb-1">{estadisticas.porcentaje ?? 0}%</h4>
                   <small className="text-primary opacity-75 fw-medium">Efectividad</small>
                 </div>
               </div>
@@ -80,64 +80,71 @@ const DashboardTabs = ({
                 <Clock size={20} className="me-2 text-primary" />
                 Registros Recientes
               </h6>
-              <span className="badge bg-light text-muted">Últimos 5 días</span>
+              <span className="badge bg-light text-muted">Últimos 30 días</span>
             </div>
             <div className="card-body p-0">
               <div className="list-group list-group-flush">
-                {historialAsistencias.map((registro, index) => (
-                  <div key={index} className="list-group-item border-bottom  border-0 py-4 px-4">
-                    <div className="d-flex justify-content-between flex-wrap gap-3 align-items-center">
-                      <div>
-                        <div className="fw-semibold text-dark">{registro.fecha}</div>
-                        <small className="text-muted d-md-none">{registro.horas}</small>
-                      </div>
-                      <div className="d-none d-md-flex gap-4">
-                        <div className="text-center">
-                          <small className="text-muted fw-medium">Entrada</small>
-                          <div className="fw-semibold text-dark">{registro.entrada}</div>
-                        </div>
-                        <div className="text-center">
-                          <small className="text-muted fw-medium">Salida</small>
-                          <div className="fw-semibold text-dark">{registro.salida}</div>
-                        </div>
-                        <div className="text-center">
-                          <small className="text-muted fw-medium">Horas</small>
-                          <div className="fw-semibold text-dark">{registro.horas}</div>
-                        </div>
-                      </div>
-                      <span className={getEstadoBadge(registro.estado)}>
-                        {getEstadoIcon(registro.estado)}
-                        <span className="ms-2 text-capitalize fw-medium">{registro.estado}</span>
-                      </span>
-                    </div>
+                {historialAsistencias.length === 0 ? (
+                  <div className="text-center py-5 text-muted fw-medium">
+                    <p className="mb-0">No tienes asistencias registradas aún.</p>
                   </div>
-                ))}
+                ) : (
+                  historialAsistencias.map((registro, index) => (
+                    <div key={index} className="list-group-item border-bottom border-0 py-4 px-4">
+                      <div className="d-flex justify-content-between flex-wrap gap-3 align-items-center">
+                        <div>
+                          <div className="fw-semibold text-dark">{registro.fecha}</div>
+                          <small className="text-muted d-md-none">{registro.horas}</small>
+                        </div>
+                        <div className="d-none d-md-flex gap-4">
+                          <div className="text-center">
+                            <small className="text-muted fw-medium">Entrada</small>
+                            <div className="fw-semibold text-dark">{registro.entrada}</div>
+                          </div>
+                          <div className="text-center">
+                            <small className="text-muted fw-medium">Salida</small>
+                            <div className="fw-semibold text-dark">{registro.salida}</div>
+                          </div>
+                          <div className="text-center">
+                            <small className="text-muted fw-medium">Horas</small>
+                            <div className="fw-semibold text-dark">{registro.horas}</div>
+                          </div>
+                        </div>
+                        <span className={getEstadoBadge(registro.estado)}>
+                          {getEstadoIcon(registro.estado)}
+                          <span className="ms-2 text-capitalize fw-medium">{registro.estado}</span>
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
+
           </div>
         </>
       )
     }
 
-    if (activeTab === "reportes") {
-      return (
-        <div className="text-center py-5">
-          <BarChart3 size={64} className="text-muted mb-4" />
-          <h5 className="text-muted fw-semibold">Reportes y Estadísticas</h5>
-          <p className="text-muted">Esta sección estará disponible próximamente</p>
-        </div>
-      )
-    }
+    // if (activeTab === "reportes") {
+    //   return (
+    //     <div className="text-center py-5">
+    //       <BarChart3 size={64} className="text-muted mb-4" />
+    //       <h5 className="text-muted fw-semibold">Reportes y Estadísticas</h5>
+    //       <p className="text-muted">Esta sección estará disponible próximamente</p>
+    //     </div>
+    //   )
+    // }
 
-    if (activeTab === "configuracion") {
-      return (
-        <div className="text-center py-5">
-          <Settings size={64} className="text-muted mb-4" />
-          <h5 className="text-muted fw-semibold">Configuración</h5>
-          <p className="text-muted">Personaliza tu experiencia en el sistema</p>
-        </div>
-      )
-    }
+    // if (activeTab === "configuracion") {
+    //   return (
+    //     <div className="text-center py-5">
+    //       <Settings size={64} className="text-muted mb-4" />
+    //       <h5 className="text-muted fw-semibold">Configuración</h5>
+    //       <p className="text-muted">Personaliza tu experiencia en el sistema</p>
+    //     </div>
+    //   )
+    // }
 
     return null
   }
@@ -171,14 +178,13 @@ const DashboardTabs = ({
           <ul className={`nav nav-tabs border-0 px-4 pt-4 ${styles.tabsContainer}`}>
             {[
               { key: "asistencias", label: "Asistencias", icon: <Clock size={16} className="me-2" /> },
-              { key: "reportes", label: "Reportes", icon: <BarChart3 size={16} className="me-2" /> },
-              { key: "configuracion", label: "Configuración", icon: <Settings size={16} className="me-2" /> },
+              // { key: "reportes", label: "Reportes", icon: <BarChart3 size={16} className="me-2" /> },
+              // { key: "configuracion", label: "Configuración", icon: <Settings size={16} className="me-2" /> },
             ].map(({ key, label, icon }) => (
               <li className="nav-item" key={key}>
                 <button
-                  className={`nav-link border-0 px-3 py-2 fw-medium d-flex align-items-center ${
-                    activeTab === key ? "active text-primary bg-primary bg-opacity-10" : "text-muted"
-                  }`}
+                  className={`nav-link border-0 px-3 py-2 fw-medium d-flex align-items-center ${activeTab === key ? "active text-primary bg-primary bg-opacity-10" : "text-muted"
+                    }`}
                   onClick={() => setActiveTab(key)}
                 >
                   {icon}
