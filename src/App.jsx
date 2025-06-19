@@ -1,11 +1,10 @@
 import React from "react";
-import AppRoutes from "./routes/AppRoutes" 
-import TestGeolocation from "./components/TestGeolocation";
+import AppRoutes from "./routes/AppRoutes"
 
 const App = () => {
   return (
     <div>
-      <TestGeolocation />
+      <AppRoutes />
     </div>
   );
 };
