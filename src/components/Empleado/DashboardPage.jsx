@@ -1,63 +1,31 @@
 import { useState, useRef, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import DashboardHeader from "./DashboardHeader"
 import DashboardTabs from "./DashboardTabs"
 import QRModal from "./QRModal"
 import IncidenciaModal from "./IncidenciaModal"
 import styles from "../../styles/dashboard.module.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { useNavigate } from "react-router-dom"
-
 import {
-  Camera,
-  FileText,
-  Clock,
-  CheckCircle,
-  XCircle,
-  Upload,
-  Calendar,
-  AlertCircle,
-  BarChart3,
-  Settings,
-  Bell,
-  LogOut,
-  X,
-  Check,
-  Info,
-  AlertTriangle,
+  Camera, FileText, Clock, CheckCircle, XCircle, Upload,
+  Calendar, AlertCircle, BarChart3, Settings, Bell,
+  LogOut, X, Check, Info, AlertTriangle,
 } from "lucide-react"
 
 const DashboardPage = () => {
-  const [activeTab, setActiveTab] = useState("asistencias")
-  const [showQRModal, setShowQRModal] = useState(false)
-  const [showIncidenciaModal, setShowIncidenciaModal] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
-  const [cameraActive, setCameraActive] = useState(false)
+  const navigate = useNavigate()
   const videoRef = useRef(null)
   const notificationRef = useRef(null)
-  const navigate = useNavigate()
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("usuario")
-    navigate("/login")
-  }
-
-  const [incidenciaForm, setIncidenciaForm] = useState({
-    tipo: "",
-    descripcion: "",
-    fecha_incidencia: "",
-    evidencias: [],
-  })
-
-  const [notifications, setNotifications] = useState([])
-
+  // Estado general del usuario
   const storedUser = localStorage.getItem("usuario")
   const usuario = storedUser ? JSON.parse(storedUser) : { nombre: "Invitado", cargo: "", avatar: "" }
 
+  // ----------------------------- Header / Notificaciones -----------------------------
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [notifications, setNotifications] = useState([])
 
-  const historialAsistencias = []
-
-  const estadisticas = {}
+  const unreadCount = notifications.filter((n) => !n.leida).length
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -71,44 +39,6 @@ const DashboardPage = () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [])
-
-  const handleOpenCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true })
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream
-      }
-      setCameraActive(true)
-    } catch {
-      alert("No se pudo acceder a la cámara")
-    }
-  }
-
-  const handleCloseCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const tracks = videoRef.current.srcObject.getTracks()
-      tracks.forEach((track) => track.stop())
-    }
-    setCameraActive(false)
-    setShowQRModal(false)
-  }
-
-  const handleIncidenciaChange = (e) => {
-    const { name, value } = e.target
-    setIncidenciaForm({ ...incidenciaForm, [name]: value })
-  }
-
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files)
-    setIncidenciaForm({ ...incidenciaForm, evidencias: [...incidenciaForm.evidencias, ...files] })
-  }
-
-  const handleSubmitIncidencia = (e) => {
-    e.preventDefault()
-    console.log("Incidencia submitted:", incidenciaForm)
-    setShowIncidenciaModal(false)
-    setIncidenciaForm({ tipo: "", descripcion: "", fecha_incidencia: "", evidencias: [] })
-  }
 
   const markAsRead = (id) => {
     setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, leida: true } : n)))
@@ -142,8 +72,69 @@ const DashboardPage = () => {
     }
   }
 
-  const unreadCount = notifications.filter((n) => !n.leida).length
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("usuario")
+    navigate("/login")
+  }
 
+  // ----------------------------- Tabs / Panel Principal -----------------------------
+  const [activeTab, setActiveTab] = useState("asistencias")
+  const historialAsistencias = []
+  const estadisticas = {}
+
+  // ----------------------------- QR Modal -----------------------------
+  const [showQRModal, setShowQRModal] = useState(false)
+  const [cameraActive, setCameraActive] = useState(false)
+
+  const handleOpenCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true })
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream
+      }
+      setCameraActive(true)
+    } catch {
+      alert("No se pudo acceder a la cámara")
+    }
+  }
+
+  const handleCloseCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const tracks = videoRef.current.srcObject.getTracks()
+      tracks.forEach((track) => track.stop())
+    }
+    setCameraActive(false)
+    setShowQRModal(false)
+  }
+
+  // ----------------------------- Incidencia Modal -----------------------------
+  const [showIncidenciaModal, setShowIncidenciaModal] = useState(false)
+  const [incidenciaForm, setIncidenciaForm] = useState({
+    tipo: "",
+    descripcion: "",
+    fecha_incidencia: "",
+    evidencias: [],
+  })
+
+  const handleIncidenciaChange = (e) => {
+    const { name, value } = e.target
+    setIncidenciaForm({ ...incidenciaForm, [name]: value })
+  }
+
+  const handleFileUpload = (e) => {
+    const files = Array.from(e.target.files)
+    setIncidenciaForm({ ...incidenciaForm, evidencias: [...incidenciaForm.evidencias, ...files] })
+  }
+
+  const handleSubmitIncidencia = (e) => {
+    e.preventDefault()
+    console.log("Incidencia submitted:", incidenciaForm)
+    setShowIncidenciaModal(false)
+    setIncidenciaForm({ tipo: "", descripcion: "", fecha_incidencia: "", evidencias: [] })
+  }
+
+  // ----------------------------- Render -----------------------------
   return (
     <div className="bg-light min-vh-100">
       <DashboardHeader

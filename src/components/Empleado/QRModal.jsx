@@ -1,6 +1,6 @@
 import { Camera } from "lucide-react"
 
-const QRModal = ({ handleOpenCamera, handleCloseCamera, cameraActive, videoRef, styles }) => {
+const QRModal = ({ handleOpenCamera, handleCloseCamera, cameraActive, videoRef }) => {
   return (
     <div className="modal fade show d-block" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
       <div className="modal-dialog modal-dialog-centered">
