@@ -12,7 +12,7 @@ const DashboardTabs = ({
 }) => {
   const getEstadoIcon = (estado) => {
     switch (estado) {
-      case "completo": return <CheckCircle size={18} />
+      case "puntual": return <CheckCircle size={18} />
       case "retardo": return <Clock size={18} />
       case "falta": return <XCircle size={18} />
       default: return null
@@ -22,7 +22,7 @@ const DashboardTabs = ({
   const getEstadoBadge = (estado) => {
     const baseClasses = "badge rounded-pill px-3 py-2 fw-normal d-inline-flex align-items-center"
     switch (estado) {
-      case "completo": return `${baseClasses} bg-success bg-opacity-10 text-success`
+      case "puntual": return `${baseClasses} bg-success bg-opacity-10 text-success`
       case "retardo": return `${baseClasses} bg-warning bg-opacity-10 text-warning`
       case "falta": return `${baseClasses} bg-danger bg-opacity-10 text-danger`
       default: return `${baseClasses} bg-secondary bg-opacity-10 text-secondary`

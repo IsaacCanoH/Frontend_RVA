@@ -19,7 +19,16 @@ const DashboardPage = () => {
 
   // ----------------------------- Header / Notificaciones -----------------------------
   const [showNotifications, setShowNotifications] = useState(false)
-  const [notifications, setNotifications] = useState([])
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      tipo: "success",
+      titulo: "Asistencia Registrada",
+      mensaje: "Tu asistencia del día de hoy ha sido registrada correctamente",
+      fecha: "2024-01-10 08:00",
+      leida: false,
+    }
+  ])
 
   const unreadCount = notifications.filter((n) => !n.leida).length
 
@@ -76,8 +85,12 @@ const DashboardPage = () => {
 
   // ----------------------------- Tabs / Panel Principal -----------------------------
   const [activeTab, setActiveTab] = useState("asistencias")
-  const historialAsistencias = []
-  const estadisticas = {}
+  const historialAsistencias = [
+    { fecha: "2025-06-18", entrada: "08:00", salida: "16:00", estado: "puntual", horas: "8h 00m" }
+  ]
+  const estadisticas = {
+    asistencias: 1
+  }
 
   // ----------------------------- QR Modal -----------------------------
   const [showQRModal, setShowQRModal] = useState(false)
